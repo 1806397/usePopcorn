@@ -1,5 +1,5 @@
 import NavBar from "./Navigation/NavBar";
-import Main from "./Main/Main";
+import Main from "./MainContent/Main";
 
 export default function App() {
   return (

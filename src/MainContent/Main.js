@@ -1,9 +1,9 @@
 import ListBox from "./ListBox";
 import WatchedBox from "./Watched/WatchedBox";
-function Main() {
+function Main({ movies }) {
   return (
     <main className="main">
-      <ListBox />
+      <ListBox movies={movies} />
       <WatchedBox />
     </main>
   );

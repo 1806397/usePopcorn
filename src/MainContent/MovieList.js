@@ -1,11 +1,15 @@
 import Movie from "./Movie";
 import Loader from "./Loader/Loader";
-function MovieList({ movies, isLoading }) {
+import ErrorMessage from "./ErrorMessage/ErrorMessage";
+function MovieList({ movies, isLoading, error }) {
+
   return (
-    isLoading ? <Loader /> : <ul className="list">
-      {movies?.map((movie) => (
+    <ul className="list">
+      {isLoading && <Loader />}
+      {!isLoading && !error && movies?.map((movie) => (
         <Movie movie={movie} key={movie.imdbID} />
       ))}
+      {error && <ErrorMessage error={error} />}
     </ul>
   );
 }

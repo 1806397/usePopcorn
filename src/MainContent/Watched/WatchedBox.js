@@ -5,7 +5,7 @@ import WatchedMovieList from "./WatchedMovieList";
 function WatchedBox() {
   const [isOpen2, setIsOpen2] = useState(true);
 
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [watched, setWatched] = useState([]);
 
   return (
     <div className="box">

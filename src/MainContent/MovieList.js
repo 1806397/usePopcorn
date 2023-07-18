@@ -1,8 +1,8 @@
 import Movie from "./Movie";
-
-function MovieList({ movies }) {
+import Loader from "./Loader/Loader";
+function MovieList({ movies, isLoading }) {
   return (
-    <ul className="list">
+    isLoading ? <Loader /> : <ul className="list">
       {movies?.map((movie) => (
         <Movie movie={movie} key={movie.imdbID} />
       ))}

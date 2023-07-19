@@ -54,15 +54,28 @@ body {
   max-width: 42rem;
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
-  overflow: scroll;
+  overflow: auto;
   position: relative;
 }
-.box::-webkit-scrollbar,
+/* .box::-webkit-scrollbar,
 .list::-webkit-scrollbar {
   display: none;
-  scroll-behavior: smooth;
-}
+  scroll-behavior: auto;
+  overflow-y: scroll;
+} */
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  margin-block: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #959595;
+  background-clip: content-box;
+  border: 3px solid transparent;
+  border: 10px;
+}
 .loader {
   text-align: center;
   text-transform: uppercase;
@@ -143,7 +156,7 @@ body {
 .list {
   list-style: none;
   padding: 0.8rem 0;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .list-watched {
@@ -186,6 +199,12 @@ body {
   align-items: center;
   gap: 2.4rem;
 }
+
+/* .list ul {
+  list-style: none;
+  width: 80%;
+  overflow: hidden;
+} */
 
 .list p {
   display: flex;

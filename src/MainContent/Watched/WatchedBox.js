@@ -1,7 +1,8 @@
 import { useState } from "react";
 import WatchedSummary from "./WatchedSummary";
 import WatchedMovieList from "./WatchedMovieList";
-function WatchedBox() {
+import MovieDetails from "../MovieDetails";
+function WatchedBox({ selectedId, setSelectedId }) {
   const [isOpen2, setIsOpen2] = useState(true);
 
   const [watched, setWatched] = useState([]);
@@ -14,12 +15,15 @@ function WatchedBox() {
       >
         {isOpen2 ? "–" : "+"}
       </button>
-      {isOpen2 && (
-        <>
-          <WatchedSummary watched={watched} />
-          <WatchedMovieList watched={watched} />
-        </>
-      )}
+      {isOpen2 &&
+        (selectedId ? (
+          <MovieDetails selectedId={selectedId} setSelectedId={setSelectedId} />
+        ) : (
+          <>
+            <WatchedSummary watched={watched} />
+            <WatchedMovieList watched={watched} />
+          </>
+        ))}
     </div>
   );
 }

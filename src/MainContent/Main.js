@@ -1,11 +1,16 @@
 import ListBox from "./ListBox";
 import WatchedBox from "./Watched/WatchedBox";
-function Main({ movies, isLoading, error }) {
+function Main({ setSelectedId, movies, isLoading, error, selectedId }) {
   //minor change
   return (
     <main className="main">
-      <ListBox movies={movies} isLoading={isLoading} error={error} />
-      <WatchedBox />
+      <ListBox
+        setSelectedId={setSelectedId}
+        movies={movies}
+        isLoading={isLoading}
+        error={error}
+      />
+      <WatchedBox selectedId={selectedId} setSelectedId={setSelectedId} />
     </main>
   );
 }

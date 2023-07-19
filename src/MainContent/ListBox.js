@@ -1,6 +1,6 @@
 import { useState } from "react";
 import MovieList from "./MovieList";
-function ListBox({ movies, isLoading, error }) {
+function ListBox({ setSelectedId, movies, isLoading, error }) {
   const [isOpen1, setIsOpen1] = useState(true);
   return (
     <div className="box">
@@ -10,7 +10,14 @@ function ListBox({ movies, isLoading, error }) {
       >
         {isOpen1 ? "–" : "+"}
       </button>
-      {isOpen1 && <MovieList movies={movies} isLoading={isLoading} error={error} />}
+      {isOpen1 && (
+        <MovieList
+          movies={movies}
+          isLoading={isLoading}
+          error={error}
+          setSelectedId={setSelectedId}
+        />
+      )}
     </div>
   );
 }

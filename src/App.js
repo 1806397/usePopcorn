@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import NavBar from "./Navigation/NavBar";
 import Main from "./MainContent/Main";
+import MovieDetails from "./MainContent/MovieDetails";
+
 const KEY = "f84fc31d";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
+
   useEffect(
     function () {
       async function fetchMovie() {
-        console.log(query);
         try {
           setIsLoading(true);
           setError("");
@@ -38,10 +41,18 @@ export default function App() {
     },
     [query]
   );
+
+  // <MovieDetails selectedId={selectedId} setSelectedId={setSelectedId} />;
   return (
     <>
       <NavBar movies={movies} query={query} setQuery={setQuery} />
-      <Main movies={movies} isLoading={isLoading} error={error} />
+      <Main
+        setSelectedId={setSelectedId}
+        movies={movies}
+        isLoading={isLoading}
+        error={error}
+        selectedId={selectedId}
+      />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import tempWatchedData from "../../Data/tempWatchedData";
 import WatchedSummary from "./WatchedSummary";
 import WatchedMovieList from "./WatchedMovieList";
 function WatchedBox() {

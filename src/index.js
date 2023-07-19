@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import StarRating from "./MainContent/Rating/StarRating";
 function Test() {
   const [movieRating, setMovieRating] = useState(0);
   return (
@@ -13,6 +12,4 @@ function Test() {
   );
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <App />
-);
+root.render(<App />);

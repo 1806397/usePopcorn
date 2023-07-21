@@ -53,6 +53,16 @@ function MovieDetails({ selectedId, setSelectedId, onAddWatched, watched }) {
     },
     [selectedId]
   );
+  useEffect(
+    function () {
+      if (!title) return;
+      document.title = `Movie | ${title}`;
+      return function () {
+        document.title = "usePopcorn";
+      };
+    },
+    [title]
+  );
   return (
     <div className="details">
       {isLoading ? (

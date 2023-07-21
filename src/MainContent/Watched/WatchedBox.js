@@ -2,11 +2,14 @@ import { useState } from "react";
 import WatchedSummary from "./WatchedSummary";
 import WatchedMovieList from "./WatchedMovieList";
 import MovieDetails from "../MovieDetails";
-function WatchedBox({ selectedId, setSelectedId }) {
+function WatchedBox({
+  selectedId,
+  setSelectedId,
+  onAddWatched,
+  watched,
+  onDeleteWatched,
+}) {
   const [isOpen2, setIsOpen2] = useState(true);
-
-  const [watched, setWatched] = useState([]);
-
   return (
     <div className="box">
       <button
@@ -17,11 +20,19 @@ function WatchedBox({ selectedId, setSelectedId }) {
       </button>
       {isOpen2 &&
         (selectedId ? (
-          <MovieDetails selectedId={selectedId} setSelectedId={setSelectedId} />
+          <MovieDetails
+            selectedId={selectedId}
+            setSelectedId={setSelectedId}
+            onAddWatched={onAddWatched}
+            watched={watched}
+          />
         ) : (
           <>
             <WatchedSummary watched={watched} />
-            <WatchedMovieList watched={watched} />
+            <WatchedMovieList
+              watched={watched}
+              onDeleteWatched={onDeleteWatched}
+            />
           </>
         ))}
     </div>

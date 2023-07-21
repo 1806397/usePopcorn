@@ -8,7 +8,13 @@ export default function App() {
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-
+  const [watched, setWatched] = useState([]);
+  function handleAddWatched(movie) {
+    setWatched((watched) => [...watched, movie]);
+  }
+  function handleDeleteWatched(id) {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  }
   useEffect(
     function () {
       async function fetchMovie() {
@@ -50,6 +56,9 @@ export default function App() {
         isLoading={isLoading}
         error={error}
         selectedId={selectedId}
+        onAddWatched={handleAddWatched}
+        watched={watched}
+        onDeleteWatched={handleDeleteWatched}
       />
     </>
   );

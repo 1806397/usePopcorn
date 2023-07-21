@@ -7,6 +7,10 @@ function MovieDetails({ selectedId, setSelectedId }) {
   const onCloseMovie = () => setSelectedId(null);
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [watched,setWatched]=useState([]);
+  function handleAddWatch(movie){
+    setWatched(watched=>[...watched,movie]);
+  }
   const {
     Title: title,
     Year: year,

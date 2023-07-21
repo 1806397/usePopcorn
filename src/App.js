@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "./Navigation/NavBar";
 import Main from "./MainContent/Main";
-import MovieDetails from "./MainContent/MovieDetails";
-
-const KEY = "f84fc31d";
+const KEY = "e49bc0e4";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

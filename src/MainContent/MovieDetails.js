@@ -24,7 +24,6 @@ function MovieDetails({ selectedId, setSelectedId, onAddWatched, watched }) {
     Director: director,
     Genre: genre,
   } = movie;
-  // console.log(title, year);
   function handleAdd() {
     const newWatchedMovie = {
       imdbID: selectedId,
@@ -38,6 +37,20 @@ function MovieDetails({ selectedId, setSelectedId, onAddWatched, watched }) {
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   }
+  useEffect(
+    function () {
+      const callback = (e) => {
+        if (e.code === "Escape") {
+          onCloseMovie();
+        }
+      };
+      document.addEventListener("keydown", callback);
+      return function () {
+        document.removeEventListener("keydown", callback);
+      };
+    },
+    [onCloseMovie]
+  );
   useEffect(
     function () {
       async function getMovieDetails() {

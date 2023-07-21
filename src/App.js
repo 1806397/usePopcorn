@@ -9,12 +9,14 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const [watched, setWatched] = useState([]);
+  const onCloseMovie = () => setSelectedId(null);
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
   }
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
+
   useEffect(
     function () {
       const controller = new AbortController();
@@ -46,6 +48,7 @@ export default function App() {
         setError("");
         return;
       }
+      onCloseMovie();
       fetchMovie();
       return function () {
         controller.abort();

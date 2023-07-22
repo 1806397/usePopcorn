@@ -8,7 +8,11 @@ export default function App() {
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
-  const [watched, setWatched] = useState([]);
+  // const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(function () {
+    const storeValue = localStorage.getItem('watched')
+    return JSON.parse(storeValue);
+  });
   const onCloseMovie = () => setSelectedId(null);
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
@@ -16,14 +20,19 @@ export default function App() {
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
+  useEffect(function () {
+    localStorage.setItem('watched', JSON.stringify(watched))
 
+  }, [watched])
   useEffect(
     function () {
+      //create abort state to remove previous fetched data for previous key stroke
       const controller = new AbortController();
       async function fetchMovie() {
         try {
           setIsLoading(true);
           setError("");
+          //adding signal to fetch
           const res = await fetch(
             `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
             { signal: controller.signal }
@@ -50,6 +59,7 @@ export default function App() {
       }
       onCloseMovie();
       fetchMovie();
+      //clearing useEffect with return function
       return function () {
         controller.abort();
       };

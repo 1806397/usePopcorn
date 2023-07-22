@@ -11,8 +11,8 @@ export default function App() {
   // const [watched, setWatched] = useState([]);
   //a
   const [watched, setWatched] = useState(function () {
-    const storeValue = localStorage.getItem('watched')
-    return JSON.parse(storeValue);
+    const storeValue = JSON.parse(localStorage.getItem("watched")) || [];
+    return storeValue;
   });
   const onCloseMovie = () => setSelectedId(null);
   function handleAddWatched(movie) {
@@ -21,13 +21,15 @@ export default function App() {
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
-  useEffect(function () {
-    localStorage.setItem('watched', JSON.stringify(watched))
-
-  }, [watched])
   useEffect(
     function () {
-      //create abort state to remove previous fetched data for previous key stroke
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
+  );
+  useEffect(
+    function () {
+      //closing a call
       const controller = new AbortController();
       async function fetchMovie() {
         try {

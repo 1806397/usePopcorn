@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NavBar from "./Navigation/NavBar";
 import Main from "./MainContent/Main";
 import useMovies from "./MainContent/CustomHook/useMovies";
